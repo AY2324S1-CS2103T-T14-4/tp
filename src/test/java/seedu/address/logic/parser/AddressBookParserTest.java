@@ -13,15 +13,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.VolunteerClearCommand;
-import seedu.address.logic.commands.VolunteerDeleteCommand;
-import seedu.address.logic.commands.VolunteerEditCommand;
+import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.VolunteerAddCommand;
 import seedu.address.logic.commands.VolunteerEditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.VolunteerFindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.VolunteerListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -36,8 +30,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        VolunteerAddCommand command = (VolunteerAddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new VolunteerAddCommand(person), command);
     }
 
     @Test
@@ -64,8 +58,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORDS) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORDS + " 3") instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
