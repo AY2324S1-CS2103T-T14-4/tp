@@ -41,7 +41,8 @@ public class VolunteerEditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         VolunteerEditCommand volunteerEditCommand = new VolunteerEditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(VolunteerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(VolunteerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                                                Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -72,10 +73,12 @@ public class VolunteerEditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        VolunteerEditCommand volunteerEditCommand = new VolunteerEditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+        VolunteerEditCommand volunteerEditCommand = new VolunteerEditCommand(INDEX_FIRST_PERSON,
+                                                                        new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(VolunteerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(VolunteerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                                                                    Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -91,7 +94,8 @@ public class VolunteerEditCommandTest {
         VolunteerEditCommand volunteerEditCommand = new VolunteerEditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(VolunteerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(VolunteerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                                                Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);

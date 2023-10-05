@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -14,8 +13,8 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -37,7 +36,8 @@ public class VolunteerRemarkCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withRemark(REMARK_STUB).build();
 
-        VolunteerRemarkCommand volunteerRemarkCommand = new VolunteerRemarkCommand(INDEX_FIRST_PERSON, new Remark(editedPerson.getRemark().value));
+        VolunteerRemarkCommand volunteerRemarkCommand = new VolunteerRemarkCommand(INDEX_FIRST_PERSON,
+                                                            new Remark(editedPerson.getRemark().value));
 
         String expectedMessage = String.format(VolunteerRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
@@ -71,7 +71,8 @@ public class VolunteerRemarkCommandTest {
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        VolunteerRemarkCommand volunteerRemarkCommand = new VolunteerRemarkCommand(INDEX_FIRST_PERSON, new Remark(editedPerson.getRemark().value));
+        VolunteerRemarkCommand volunteerRemarkCommand = new VolunteerRemarkCommand(INDEX_FIRST_PERSON,
+                                                            new Remark(editedPerson.getRemark().value));
 
         String expectedMessage = String.format(VolunteerRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
@@ -84,7 +85,8 @@ public class VolunteerRemarkCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        VolunteerRemarkCommand volunteerRemarkCommand = new VolunteerRemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+        VolunteerRemarkCommand volunteerRemarkCommand = new VolunteerRemarkCommand(outOfBoundIndex,
+                                                            new Remark(VALID_REMARK_BOB));
 
         assertCommandFailure(volunteerRemarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -100,7 +102,8 @@ public class VolunteerRemarkCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        VolunteerRemarkCommand volunteerRemarkCommand = new VolunteerRemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+        VolunteerRemarkCommand volunteerRemarkCommand = new VolunteerRemarkCommand(outOfBoundIndex,
+                                                            new Remark(VALID_REMARK_BOB));
         assertCommandFailure(volunteerRemarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 

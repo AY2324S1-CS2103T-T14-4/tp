@@ -50,7 +50,8 @@ public class VolunteerAddCommandTest {
         VolunteerAddCommand volunteerAddCommand = new VolunteerAddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, VolunteerAddCommand.MESSAGE_DUPLICATE_PERSON, () -> volunteerAddCommand.execute(modelStub));
+        assertThrows(CommandException.class, VolunteerAddCommand.MESSAGE_DUPLICATE_PERSON,
+                        () -> volunteerAddCommand.execute(modelStub));
     }
 
     @Test
