@@ -8,14 +8,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.VolunteerAddCommand;
 import seedu.address.logic.commands.VolunteerClearCommand;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.VolunteerDeleteCommand;
 import seedu.address.logic.commands.VolunteerEditCommand;
-import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.VolunteerFindCommand;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.VolunteerListCommand;
 import seedu.address.logic.commands.VolunteerRemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -30,7 +30,8 @@ public class AddressBookParser {
      */
     // A new format can identify single word commands(e.g. help, exit),
     // and two word commands with arguments(e.g. volunteer delete 3)
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWords>\\S+(?:\\s+\\S+)?)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
+                            "(?<commandWords>\\S+(?:\\s+\\S+)?)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**

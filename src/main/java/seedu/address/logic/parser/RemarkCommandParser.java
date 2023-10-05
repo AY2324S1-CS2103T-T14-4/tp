@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.VolunteerRemarkCommand;
@@ -24,10 +26,10 @@ public class RemarkCommandParser implements Parser<VolunteerRemarkCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, VolunteerRemarkCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                        VolunteerRemarkCommand.MESSAGE_USAGE), ive);
         }
- String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
-
- return new VolunteerRemarkCommand(index, new Remark(remark));
- }
+        String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
+        return new VolunteerRemarkCommand(index, new Remark(remark));
+    }
  }
