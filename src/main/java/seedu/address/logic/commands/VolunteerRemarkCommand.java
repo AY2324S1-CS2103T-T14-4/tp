@@ -16,17 +16,17 @@ import java.util.List;
 /**
  * Changes the remark of an existing person in the address book.
  */
-public class RemarkCommand extends Command {
+public class VolunteerRemarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "remark";
+    public static final String COMMAND_WORDS = "volunteer remark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORDS
             + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORDS + " 1 "
             + "r/ Likes to swim.";
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
@@ -38,7 +38,7 @@ public class RemarkCommand extends Command {
      * @param index of the person in the filtered person list to edit the remark
      * @param remark of the person to be updated to
      */
-    public RemarkCommand(Index index, Remark remark) {
+    public VolunteerRemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
 
         this.index = index;
@@ -79,11 +79,11 @@ public class RemarkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof RemarkCommand)) {
+        if (!(other instanceof VolunteerRemarkCommand)) {
             return false;
         }
 
-        RemarkCommand e = (RemarkCommand) other;
+        VolunteerRemarkCommand e = (VolunteerRemarkCommand) other;
         return index.equals(e.index)
                 && remark.equals(e.remark);
     }

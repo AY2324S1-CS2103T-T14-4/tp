@@ -9,15 +9,15 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.VolunteerClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.VolunteerDeleteCommand;
+import seedu.address.logic.commands.VolunteerEditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.VolunteerFindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.VolunteerListCommand;
+import seedu.address.logic.commands.VolunteerRemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -28,7 +28,9 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    // A new format can identify single word commands(e.g. help, exit),
+    // and two word commands with arguments(e.g. volunteer delete 3)
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWords>\\S+(?:\\s+\\S+)?)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
@@ -44,36 +46,36 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWords = matcher.group("commandWords");
         final String arguments = matcher.group("arguments");
 
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
-        logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
+        logger.fine("Command word: " + commandWords + "; Arguments: " + arguments);
 
-        switch (commandWord) {
+        switch (commandWords) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddCommand.COMMAND_WORDS:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
+        case VolunteerEditCommand.COMMAND_WORDS:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case VolunteerDeleteCommand.COMMAND_WORDS:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case VolunteerClearCommand.COMMAND_WORDS:
+            return new VolunteerClearCommand();
 
-        case FindCommand.COMMAND_WORD:
+        case VolunteerFindCommand.COMMAND_WORDS:
             return new FindCommandParser().parse(arguments);
 
-        case RemarkCommand.COMMAND_WORD:
+        case VolunteerRemarkCommand.COMMAND_WORDS:
             return new RemarkCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case VolunteerListCommand.COMMAND_WORDS:
+            return new VolunteerListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
