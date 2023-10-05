@@ -63,7 +63,8 @@ public class VolunteerEditCommandTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         VolunteerEditCommand volunteerEditCommand = new VolunteerEditCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(VolunteerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = String.format(VolunteerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                                                    Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);

@@ -13,9 +13,16 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.*;
+
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.VolunteerAddCommand;
+import seedu.address.logic.commands.VolunteerClearCommand;
+import seedu.address.logic.commands.VolunteerDeleteCommand;
+import seedu.address.logic.commands.VolunteerEditCommand;
 import seedu.address.logic.commands.VolunteerEditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.VolunteerFindCommand;
+import seedu.address.logic.commands.VolunteerListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -67,8 +74,8 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         VolunteerFindCommand command = (VolunteerFindCommand) parser.parseCommand(
-                VolunteerFindCommand.COMMAND_WORDS + " " + keywords.stream().
-                                collect(Collectors.joining(" ")));
+                VolunteerFindCommand.COMMAND_WORDS + " " + keywords.stream()
+                                .collect(Collectors.joining(" ")));
         assertEquals(new VolunteerFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
