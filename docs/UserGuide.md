@@ -179,25 +179,29 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I open the iVolunteer app?
+
+**A**: Refer to the [Quick Start](#quick-start) above for instructions on how to install and open our application.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
+1. **Coming soon**
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+Other commands are **coming soon**!
+
+| Action                                           | Format(s), Examples                                                                                                                                                                                                                                                                                                                                                                                                       |
+|--------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add a new event**                              | `event add n/EVENT_NAME r/ROLES_NEEDED... d/DATE_AND_TIME l/LOCATION dsc/DESCRIPTION [m/MATERIALS_AND_LOGISTICS_NEEDED]... [b/BUDGET]` <br> e.g., `n/food donation r/chef r/packer d/23-9-2023 1500 dsc/help food distribution m/50 potatoes b/$50` <br> Abbreviations for `event add` are `e add` and `ea`.                                                                                                              |
+| **List all events**                              | `event list` <br> Abbreviations for `event list` are `e list` and `el`.                                                                                                                                                                                                                                                                                                                                                   |
+| **List an individual event**                     | `event show EVENT_NUMBER` <br> e.g., `event show 8` <br> Abbreviations for `event show` are `e show` and `es`.                                                                                                                                                                                                                                                                                                            |
+| **Delete event listing**                         | `event delete EVENT_NUMBER` <br> e.g.,`event delete 8` <br> Abbreviations for `event delete` are `e delete` and `ed`.                                                                                                                                                                                                                                                                                                     |
+| **Check volunteers that signed up for an event** | `volunteer list eid/EVENT_ID`<br> e.g., `volunteer list eid/8` <br> Alternatively, `volunteer list en/EVENT_NAME` <br> e.g., `volunteer list en/Food Drive in October` <br> Abbreviations for `volunteer list` are `v list` and `vl`.                                                                                                                                                                                     |
+| **Add a volunteer to an event**                  | `volunteer add vn/VOLUNTEER_NAME hp/PHONE_NUMBER e/EMAIL /to eid/EVENT_ID` <br> e.g., `volunteer add vn/John hp/12345678 e/john123@gmail.com /to eid/8` <br> Alternatively, `volunteer add vn/VOLUNTEER_NAME hp/PHONE_NUMBER e/EMAIL /to en/EVENT_NAME` <br> e.g., `volunteer add vn/John hp/12345678 e/john123@gmail.com /to en/Volunteering at Sparketots` <br> Abbreviations for `volunteer add` are `v add` and `va`. |
+| **Delete a volunteer from an event**             | `volunteer delete vn/VOLUNTEER_NAME id/VOLUNTEER_ID /from eid/EVENT_ID` <br> e.g., `volunteer delete vn/John id/8 /from eid/4`<br> `volunteer delete vn/VOLUNTEER_NAME id/VOLUNTEER_ID /from en/EVENT_NAME` <br> e.g., `volunteer delete vn/John id/1 /from en/Volunteering at Sparkletots` <br> Abbreviations for `volunteer delete` are `v delete` and `vd`.                                                            |
+| **Add a volunteer to the database**              | `volunteer create vn/VOLUNTEER_NAME hp/PHONE_NUMBER e/EMAIL` <br> e.g., `volunteer create vn/Cyrus hp/12345678 e/robot123@gmail.com` <br> Abbreviations for `volunteer create` are `v create` and `vc`.                                                                                                                                                                                                                   |
+
