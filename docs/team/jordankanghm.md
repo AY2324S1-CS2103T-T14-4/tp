@@ -10,7 +10,7 @@ iVolunteer is a...
 Given below are my contributions to the project.
 
 * **New Feature**: to be added soon
-   
+
 * **New Feature**: to be added soon
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=jordankanghm&breakdown=true)
