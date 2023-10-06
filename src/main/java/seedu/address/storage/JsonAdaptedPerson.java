@@ -45,7 +45,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.remark = remark;
         if (tags != null) {
-            this.tags.addAll(tags);
+            this.tags.addAll(tagged);
         }
     }
 
@@ -71,7 +71,11 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+            if (Tag.isValidTagName(tag.getTagName())) {
+                personTags.add(tag.toModelType());
+            } else {
+                throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            }
         }
 
         if (name == null) {
