@@ -118,6 +118,8 @@
         "removing-a-volunteer-in-an-event-eremovev-coming-soon": "Removing a volunteer in an event: eremovev [COMING SOON]",
         "clearing-all-entries-clear": "Clearing all entries : clear",
         "creating-an-event-coming-soon": "Creating an event [coming soon]",
+        "listing-all-events-elist-coming-soon": "Listing all events : elist [coming soon]",
+        "reading-an-individual-event-eshow-coming-soon": "Reading an individual event : eshow [coming soon]",
         "exiting-the-program-exit": "Exiting the program : exit",
         "saving-the-data": "Saving the data",
         "editing-the-data-file": "Editing the data file",
