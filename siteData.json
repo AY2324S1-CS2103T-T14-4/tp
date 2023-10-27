@@ -114,7 +114,7 @@
         "creating-a-new-volunteer-s-profile-vcreate": "Creating a new volunteer's profile: vcreate",
         "listing-all-volunteers-vlist": "Listing all volunteers: vlist",
         "locating-volunteers-by-name-vfind": "Locating volunteers by name: vfind",
-        "editing-a-volunteer-vedit-coming-soon": "Editing a volunteer: vedit [COMING SOON]",
+        "editing-a-volunteer-vedit": "Editing a volunteer: vedit",
         "deleting-a-volunteer-from-the-volunteer-list-vdelete": "Deleting a volunteer from the volunteer list: vdelete",
         "clearing-all-volunteer-entries-vclear": "Clearing all volunteer entries: vclear",
         "creating-an-event-ecreate": "Creating an event: ecreate",
