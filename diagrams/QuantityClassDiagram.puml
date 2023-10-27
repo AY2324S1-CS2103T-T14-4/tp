@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package EVENT <<Rectangle>>{
+Class "<<interface>>\nQuantity" as Quantity
+Class Event
+Class Description
+Class DateTime
+Class Location
+Class Budget
+Class EventName
+Class Role implements Quantity
+Class Material implements Quantity
+}
+
+Event *-up->  "1" EventName
+Event *-down-> "1" DateTime : > starts at...
+Event *-down-> "1" DateTime : > ends at...
+Event *-up-> "1" Location
+Event *-left-> "1" Description
+Event *-right-> "1" Budget
+Event *-down-> "1..*" Role
+Event *-down-> "1..*" Material
+@enduml
