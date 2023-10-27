@@ -341,7 +341,7 @@ Step 2. When the command is parsed, the index of the event in the event list is 
 
 Step 3. The command is then executed and with the index and the event is deleted from the filtered list.
 
-Step 4. Then the storage will also be updated accordingly by the filtered list.
+Step 4. Then the event storage will also be updated accordingly by the filtered list.
 
 ### \[In progress\] Tracking amount of roles and materials
 
