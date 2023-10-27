@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":IVolunteerParser" as IVolunteerParser LOGIC_COLOR
+participant ":EventCreateCommandParser" as EventCreateCommandParser LOGIC_COLOR
+participant "c:EventCreateCommand" as EventCreateCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("ecreate n/Clean up...")
+activate LogicManager
+
+LogicManager -> IVolunteerParser : parseCommand("ecreate n/Clean up...")
+activate IVolunteerParser
+
+create EventCreateCommandParser
+IVolunteerParser -> EventCreateCommandParser
+activate EventCreateCommandParser
+
+EventCreateCommandParser --> IVolunteerParser
+deactivate EventCreateCommandParser
+
+IVolunteerParser -> EventCreateCommandParser : parse("n/Clean up...")
+activate EventCreateCommandParser
+
+create EventCreateCommand
+EventCreateCommandParser -> EventCreateCommand
+activate EventCreateCommand
+
+EventCreateCommand --> EventCreateCommandParser : c
+deactivate EventCreateCommand
+
+EventCreateCommandParser --> IVolunteerParser : c
+deactivate EventCreateCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EventCreateCommandParser -[hidden]-> IVolunteerParser
+destroy EventCreateCommandParser
+
+IVolunteerParser --> LogicManager : c
+deactivate IVolunteerParser
+
+LogicManager -> EventCreateCommand : execute()
+activate EventCreateCommand
+
+EventCreateCommand -> Model : hasEvent(e)
+activate Model
+
+Model --> EventCreateCommand
+deactivate Model
+
+EventCreateCommand -> Model : addEvent(e)
+activate Model
+
+Model --> EventCreateCommand
+deactivate Model
+
+create CommandResult
+EventCreateCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EventCreateCommand
+deactivate CommandResult
+
+EventCreateCommand --> LogicManager : result
+deactivate EventCreateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

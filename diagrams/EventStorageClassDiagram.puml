@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package Storage as StoragePackage {
+
+
+Class "<<interface>>\nStorage" as Storage
+Class StorageManager
+
+package "Event Storage" #F4F6F6{
+Class "<<interface>>\nEventStorage" as EventStorage
+Class JsonEventStorage
+Class JsonSerializableEventStorage
+Class JsonAdaptedEvent
+Class JsonAdaptedRole
+Class JsonAdaptedMaterial
+}
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Storage
+
+StorageManager .up.|> Storage
+StorageManager -up-> "1" EventStorage
+
+Storage -right-|> EventStorage
+
+JsonEventStorage .up.|> EventStorage
+JsonEventStorage ..> JsonSerializableEventStorage
+JsonSerializableEventStorage --> "*" JsonAdaptedEvent
+JsonAdaptedEvent --> "*" JsonAdaptedMaterial
+JsonAdaptedEvent --> "*" JsonAdaptedRole
+
+@enduml
