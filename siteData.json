@@ -130,6 +130,7 @@
         "reading-an-individual-event-eshow": "Reading an individual event: eshow",
         "deleting-an-event-edelete": "Deleting an event: edelete",
         "clearing-all-event-entries-eclear": "Clearing all event entries: eclear",
+        "adding-and-tracking-quantity-of-materials-into-an-event-eaddm": "Adding and tracking quantity of materials into an event: eaddm",
         "adding-a-volunteer-into-an-event-eaddv": "Adding a volunteer into an event: eaddv",
         "listing-all-volunteers-in-an-event-elistv": "Listing all volunteers in an event: elistv",
         "removing-a-volunteer-from-an-event-eremovev": "Removing a volunteer from an event: eremovev",
