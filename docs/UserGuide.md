@@ -113,6 +113,7 @@ Parameters:
 </box>
 
 Restrictions:
+* Volunteers cannot have duplicate names(Volunteer names are unique to each volunteer).
 * The maximum number of characters of a volunteer name is 30.
 * The email must be in a valid format.
 * The phone number must be a valid 8-digit Singapore phone number.
@@ -241,8 +242,10 @@ Parameters:
 Restrictions:
 * All parameters must be separated by a single space.
 * All arguments cannot be blank.
+* Events cannot have duplicate names(Event names are unique to each event).
 * The date and time formats must be exactly `DD/MM/YYYY TTTT`.
 * If the end date and time is specified, it must be the _same time_ or _after_ the start date and time of the event.
+* The location and description arguments cannot contain the `[` and `]` symbols.
 * The material argument must be an integer, followed by a space, and then the name of material required.
 * The role argument must be an integer, followed by a space, and then the name of role required.
 * The budget argument must be a number in 2 decimal places.
