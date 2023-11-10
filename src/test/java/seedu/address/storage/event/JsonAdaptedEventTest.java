@@ -22,8 +22,8 @@ public class JsonAdaptedEventTest {
     private static final String INVALID_EVENT_NAME = "C@ean beach";
     private static final String INVALID_START_DATE = "30-09-2023 1800";
     private static final String INVALID_END_DATE = "30-09-2023 2100";
-    private static final String INVALID_LOCATION = "Sing@pore";
-    private static final String INVALID_DESCRIPTION = "Cle&ning the beach.";
+    private static final String INVALID_LOCATION = "Sing[pore";
+    private static final String INVALID_DESCRIPTION = "Cle[ning the beach.";
     private static final String INVALID_BUDGET = "One thousand";
     private static final String INVALID_MATERIAL = "no@hing";
     private static final String INVALID_ROLE = "cle&ner";

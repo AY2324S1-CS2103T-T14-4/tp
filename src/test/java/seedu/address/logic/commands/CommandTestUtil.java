@@ -88,8 +88,8 @@ public class CommandTestUtil {
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "cleaner&";
     public static final String INVALID_START_DATETIME_DESC = " " + PREFIX_START_DATETIME + "23-9-2023 1800";
     public static final String INVALID_END_DATETIME_DESC = " " + PREFIX_END_DATETIME + "23-9-2023 1800";
-    public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION + "sembawang&";
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "clean&";
+    public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION + "sembawang[";
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "clean[";
     public static final String INVALID_MATERIAL_DESC = " " + PREFIX_MATERIAL + "20 trash bag&";
     public static final String INVALID_BUDGET_DESC = " " + PREFIX_BUDGET + "50.0";
     public static final String INVALID_MVS_DESC = " " + PREFIX_MAX_VOLUNTEER_SIZE + "-4&";
