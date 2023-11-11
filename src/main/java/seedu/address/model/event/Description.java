@@ -16,7 +16,8 @@ public class Description {
      * otherwise " " (a blank string) becomes a valid input.
      * The expression allows for multiple words to be inputted.
      */
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 !\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_` ]+$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 !\"#$%&'()*+,\\-./:;<=>?@\\\\[\\\\\\\\\\\\]^_`{}[\\\\] ]+$";
+//            "^[a-zA-Z0-9 !\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_` ]+$";
 
     public final String description;
 
