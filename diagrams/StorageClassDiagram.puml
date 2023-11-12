@@ -14,12 +14,23 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+package "Volunteer Storage" #F4F6F6{
+Class "<<interface>>\nVolunteerStorage" as VolunteerStorage
+Class JsonVolunteerStorage
+Class JsonSerializableVolunteerStorage
+Class JsonAdaptedVolunteer
+Class JsonAdaptedSkill
+Class JsonAdaptedEventName
+}
+
+package "Event Storage" #F4F6F6{
+Class "<<interface>>\nEventStorage" as EventStorage
+Class JsonEventStorage
+Class JsonSerializableEventStorage
+Class JsonAdaptedEvent
+Class JsonAdaptedMaterial
+Class JsonAdaptedRole
+Class JsonAdaptedName
 }
 
 }
@@ -28,16 +39,26 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -left-> "1" UserPrefsStorage
+StorageManager -down-> "1" VolunteerStorage
+StorageManager -right-> "1" EventStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> EventStorage
+Storage -down-|> VolunteerStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonVolunteerStorage .up.|> VolunteerStorage
+JsonVolunteerStorage ..> JsonSerializableVolunteerStorage
+JsonSerializableVolunteerStorage --> "*" JsonAdaptedVolunteer
+JsonAdaptedVolunteer --> "*" JsonAdaptedSkill
+JsonAdaptedVolunteer --> "*" JsonAdaptedEventName
+
+JsonEventStorage .up.|> EventStorage
+JsonEventStorage ..> JsonSerializableEventStorage
+JsonSerializableEventStorage --> "*" JsonAdaptedEvent
+JsonAdaptedEvent --> "*" JsonAdaptedRole
+JsonAdaptedEvent --> "*" JsonAdaptedMaterial
+JsonAdaptedEvent --> "*" JsonAdaptedName
 
 @enduml

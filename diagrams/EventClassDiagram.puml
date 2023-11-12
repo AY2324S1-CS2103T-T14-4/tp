@@ -4,11 +4,12 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Event *-left-> "1" EventName
+Event *--> "1" EventName
 Event *--> "1...* " Role
 Event *--> "2" DateTime
 Event *--> "1" Location
 Event *--> "1" Description
 Event *--> "*" Material
-Event *-right-> "0...1" Budget
+Event *--> "0...1" Budget
+Event *--> "*" Name : contains volunteers with name >
 @enduml

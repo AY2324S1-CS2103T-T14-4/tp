@@ -1,0 +1,41 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes EventAddVolunteerCommand;
+:Model loads filtered event and volunteer lists;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([event or volunteer index out of range])
+    :Display index out of
+    range error message;
+    stop
+else ([else])
+    :Get event and volunteer objects from respective lists;
+    if () then ([volunteer already added to event])
+        :Display volunteer already
+        added error message;
+        stop
+    elseif () then ([event is full])
+        :Display event is full
+        error message;
+        stop
+    else ([else])
+        :Check for clashing events;
+        if () then ([clashing events])
+            :Display clashing events
+            error message;
+            stop
+        else ([else])
+            :Update volunteer and event object,
+            saving them to their respective storage;
+            :Return CommandResult with success message,
+            updated message, and new volunteer list size;
+            stop
+        endif
+    endif
+endif
+@enduml
