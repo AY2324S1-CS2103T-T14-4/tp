@@ -126,6 +126,7 @@
         "deleting-a-volunteer-profile-vdelete": "Deleting a volunteer profile: vdelete",
         "creating-an-event-ecreate": "Creating an event: ecreate",
         "listing-all-events-elist": "Listing all events: elist",
+        "locating-events-by-name-efind": "Locating events by name: efind",
         "reading-an-individual-event-eshow": "Reading an individual event: eshow",
         "deleting-an-event-edelete": "Deleting an event: edelete",
         "adding-and-tracking-quantity-of-materials-into-an-event-eaddm": "Adding and tracking quantity of materials into an event: eaddm",
