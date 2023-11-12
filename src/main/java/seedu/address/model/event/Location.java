@@ -15,7 +15,8 @@ public class Location {
      * The first character of the location must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 !\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_` ]+$";
+    public static final String VALIDATION_REGEX =
+            "^[a-zA-Z0-9 !\"#$%&'()*+,\\-./:;<=>?@|~\\\\[\\\\\\\\\\\\]^_`{}[\\\\] ]+$";
 
     public final String location;
 
