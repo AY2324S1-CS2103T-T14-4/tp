@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EVENTID_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VOLUNTEERID_DESC;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -43,16 +43,16 @@ public class EventRemoveVolunteerCommandParserTest {
                 EventRemoveVolunteerCommand.MESSAGE_USAGE);
 
         // invalid eid argument
-        assertParseFailure(parser, EVENTID_DESC + INVALID_LOCATION_DESC + VOLUNTEERID_DESC + INDEX_FIRST,
+        assertParseFailure(parser, EVENTID_DESC + INVALID_ROLE_DESC + VOLUNTEERID_DESC + INDEX_FIRST,
                 expectedMessage);
 
         // invalid vid argument
-        assertParseFailure(parser, EVENTID_DESC + INDEX_FIRST + VOLUNTEERID_DESC + INVALID_LOCATION_DESC,
+        assertParseFailure(parser, EVENTID_DESC + INDEX_FIRST + VOLUNTEERID_DESC + INVALID_ROLE_DESC,
                 expectedMessage);
 
         // both eid and vid arguments invalid
-        assertParseFailure(parser, EVENTID_DESC + INVALID_LOCATION_DESC + VOLUNTEERID_DESC
-                        + INVALID_LOCATION_DESC,
+        assertParseFailure(parser, EVENTID_DESC + INVALID_ROLE_DESC + VOLUNTEERID_DESC
+                        + INVALID_ROLE_DESC,
                 expectedMessage);
     }
 }

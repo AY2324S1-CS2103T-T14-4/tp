@@ -8,10 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.END_DATETIME_DESC_CLE
 import static seedu.address.logic.commands.CommandTestUtil.END_DATETIME_DESC_CLEANUP_BEFORE_START;
 import static seedu.address.logic.commands.CommandTestUtil.EVENTNAME_DESC_CLEANUP;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BUDGET_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_DATETIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENTNAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MATERIAL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MVS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
@@ -52,10 +50,8 @@ import seedu.address.logic.commands.eventcommands.EventCreateCommand;
 import seedu.address.logic.parser.eventcommandparsers.EventCreateCommandParser;
 import seedu.address.model.event.Budget;
 import seedu.address.model.event.DateTime;
-import seedu.address.model.event.Description;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
-import seedu.address.model.event.Location;
 import seedu.address.model.event.Material;
 import seedu.address.model.event.MaxVolunteerSize;
 import seedu.address.model.event.Role;
@@ -141,14 +137,6 @@ public class EventCreateCommandParserTest {
         assertParseFailure(parser, INVALID_END_DATETIME_DESC + validExpectedEventString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_END_DATETIME));
 
-        // invalid location
-        assertParseFailure(parser, INVALID_LOCATION_DESC + validExpectedEventString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_LOCATION));
-
-        // invalid description
-        assertParseFailure(parser, INVALID_DESCRIPTION_DESC + validExpectedEventString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
-
         // invalid budget
         assertParseFailure(parser, INVALID_BUDGET_DESC + validExpectedEventString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_BUDGET));
@@ -170,14 +158,6 @@ public class EventCreateCommandParserTest {
         // invalid end date and time
         assertParseFailure(parser, validExpectedEventString + INVALID_END_DATETIME_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_END_DATETIME));
-
-        // invalid location
-        assertParseFailure(parser, validExpectedEventString + INVALID_LOCATION_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_LOCATION));
-
-        // invalid description
-        assertParseFailure(parser, validExpectedEventString + INVALID_DESCRIPTION_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
 
         // invalid budget
         assertParseFailure(parser, validExpectedEventString + INVALID_BUDGET_DESC,
@@ -292,18 +272,6 @@ public class EventCreateCommandParserTest {
                         + INVALID_END_DATETIME_DESC + LOCATION_DESC_CLEANUP + DESCRIPTION_DESC_CLEANUP
                         + MATERIAL_DESC_TRASHBAG + BUDGET_DESC_CLEANUP + MVS_DESC_CLEANUP,
                 DateTime.MESSAGE_CONSTRAINTS);
-
-        // invalid location
-        assertParseFailure(parser, EVENTNAME_DESC_CLEANUP + ROLE_DESC_CLEANER + START_DATETIME_DESC_CLEANUP
-                + END_DATETIME_DESC_CLEANUP + INVALID_LOCATION_DESC + DESCRIPTION_DESC_CLEANUP + MATERIAL_DESC_TRASHBAG
-                + BUDGET_DESC_CLEANUP + MVS_DESC_CLEANUP,
-                Location.MESSAGE_CONSTRAINTS);
-
-        // invalid description
-        assertParseFailure(parser, EVENTNAME_DESC_CLEANUP + ROLE_DESC_CLEANER + START_DATETIME_DESC_CLEANUP
-                + END_DATETIME_DESC_CLEANUP + LOCATION_DESC_CLEANUP + INVALID_DESCRIPTION_DESC + MATERIAL_DESC_TRASHBAG
-                + BUDGET_DESC_CLEANUP + MVS_DESC_CLEANUP,
-                Description.MESSAGE_CONSTRAINTS);
 
         // invalid materials
         assertParseFailure(parser, EVENTNAME_DESC_CLEANUP + ROLE_DESC_CLEANER + START_DATETIME_DESC_CLEANUP

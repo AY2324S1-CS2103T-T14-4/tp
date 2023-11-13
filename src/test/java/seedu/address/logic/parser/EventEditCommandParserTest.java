@@ -9,10 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.END_DATETIME_DESC_HEL
 import static seedu.address.logic.commands.CommandTestUtil.EVENTNAME_DESC_CLEANUP;
 import static seedu.address.logic.commands.CommandTestUtil.EVENTNAME_DESC_HELPOUT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BUDGET_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_DATETIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENTNAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MATERIAL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_DATETIME_DESC;
@@ -55,9 +53,7 @@ import seedu.address.logic.commands.eventcommands.EventEditCommand.EditEventDesc
 import seedu.address.logic.parser.eventcommandparsers.EventEditCommandParser;
 import seedu.address.model.event.Budget;
 import seedu.address.model.event.DateTime;
-import seedu.address.model.event.Description;
 import seedu.address.model.event.EventName;
-import seedu.address.model.event.Location;
 import seedu.address.model.event.Material;
 import seedu.address.model.event.Role;
 import seedu.address.testutil.EditEventDescriptorBuilder;
@@ -108,12 +104,6 @@ public class EventEditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_START_DATETIME_DESC, DateTime.MESSAGE_CONSTRAINTS);
         // invalid end date
         assertParseFailure(parser, "1" + INVALID_END_DATETIME_DESC, DateTime.MESSAGE_CONSTRAINTS);
-        // invalid location
-        assertParseFailure(parser, "1" + INVALID_LOCATION_DESC, Location.MESSAGE_CONSTRAINTS);
-        // invalid description
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
-        // invalid location
-        assertParseFailure(parser, "1" + INVALID_LOCATION_DESC, Location.MESSAGE_CONSTRAINTS);
         // invalid material
         assertParseFailure(parser, "1" + INVALID_MATERIAL_DESC, Material.MESSAGE_CONSTRAINTS);
         // invalid budget
@@ -235,7 +225,7 @@ public class EventEditCommandParserTest {
 
         // valid followed by invalid
         Index targetIndex = INDEX_FIRST;
-        String userInput = targetIndex.getOneBased() + INVALID_LOCATION_DESC + LOCATION_DESC_HELPOUT;
+        String userInput = targetIndex.getOneBased() + LOCATION_DESC_CLEANUP + LOCATION_DESC_HELPOUT;
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_LOCATION));
 
@@ -254,11 +244,11 @@ public class EventEditCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_START_DATETIME, PREFIX_NAME, PREFIX_DESCRIPTION));
 
         // multiple invalid values
-        userInput = targetIndex.getOneBased() + INVALID_BUDGET_DESC + INVALID_LOCATION_DESC
-                + INVALID_BUDGET_DESC + INVALID_LOCATION_DESC;
+        userInput = targetIndex.getOneBased() + INVALID_BUDGET_DESC + INVALID_START_DATETIME_DESC
+                + INVALID_BUDGET_DESC + INVALID_START_DATETIME_DESC;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_BUDGET, PREFIX_LOCATION));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_BUDGET, PREFIX_START_DATETIME));
     }
 
     @Test

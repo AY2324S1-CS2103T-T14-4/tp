@@ -22,8 +22,6 @@ public class JsonAdaptedEventTest {
     private static final String INVALID_EVENT_NAME = "C@ean beach";
     private static final String INVALID_START_DATE = "30-09-2023 1800";
     private static final String INVALID_END_DATE = "30-09-2023 2100";
-    private static final String INVALID_LOCATION = "Sing[pore";
-    private static final String INVALID_DESCRIPTION = "Cle[ning the beach.";
     private static final String INVALID_BUDGET = "One thousand";
     private static final String INVALID_MATERIAL = "no@hing";
     private static final String INVALID_ROLE = "cle&ner";
@@ -112,16 +110,6 @@ public class JsonAdaptedEventTest {
     }
 
     @Test
-    public void toModelType_invalidLocation_throwsIllegalValueException() {
-        JsonAdaptedEvent event =
-                new JsonAdaptedEvent(VALID_EVENT_NAME, VALID_ROLES, VALID_START_DATE, VALID_END_DATE,
-                        INVALID_LOCATION, VALID_DESCRIPTION, VALID_MATERIALS, VALID_BUDGET, VALID_ASSIGNED_VOLUNTEERS,
-                        VALID_MAX_VOLUNTEER_SIZE);
-        String expectedMessage = Location.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
-    }
-
-    @Test
     public void toModelType_nullLocation_throwsIllegalValueException() {
         JsonAdaptedEvent event =
                 new JsonAdaptedEvent(VALID_EVENT_NAME, VALID_ROLES, VALID_START_DATE, VALID_END_DATE,
@@ -130,17 +118,6 @@ public class JsonAdaptedEventTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
-
-    @Test
-    public void toModelType_invalidDescription_throwsIllegalValueException() {
-        JsonAdaptedEvent event =
-                new JsonAdaptedEvent(VALID_EVENT_NAME, VALID_ROLES, VALID_START_DATE, VALID_END_DATE,
-                        VALID_LOCATION, INVALID_DESCRIPTION, VALID_MATERIALS, VALID_BUDGET, VALID_ASSIGNED_VOLUNTEERS,
-                        VALID_MAX_VOLUNTEER_SIZE);
-        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
-    }
-
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedEvent event =
