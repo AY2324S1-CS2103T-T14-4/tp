@@ -1,0 +1,28 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes VolunteerFindCommand;
+:Model loads volunteer list;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([invalid command input])
+    :Display error message;
+    stop
+else ([else])
+    :Iterate through the volunteer list;
+    :Check each volunteer for matching name and skill;
+    if () then ([else])
+        :No volunteers displayed;
+        stop
+    else ([volunteer matches both name and skill])
+        :Volunteer added to filtered volunteer list;
+        :Return CommandResult with success message
+        and number of matching volunteers found;
+        stop
+    endif
+endif
+@enduml

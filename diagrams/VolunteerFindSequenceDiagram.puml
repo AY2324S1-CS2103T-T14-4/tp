@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":IVolunteerParser" as IVolunteerParser LOGIC_COLOR
+participant ":VolunteerFindCommandParser" as VolunteerFindCommandParser LOGIC_COLOR
+participant "f:VolunteerFindCommand" as VolunteerFindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("vfind n/Alex s/chef")
+activate LogicManager
+
+LogicManager -> IVolunteerParser : parseCommand("vfind n/Alex s/chef")
+activate IVolunteerParser
+
+create VolunteerFindCommandParser
+IVolunteerParser -> VolunteerFindCommandParser
+activate VolunteerFindCommandParser
+
+VolunteerFindCommandParser --> IVolunteerParser
+deactivate VolunteerFindCommandParser
+
+IVolunteerParser -> VolunteerFindCommandParser : parse("n/Alex s/chef")
+activate VolunteerFindCommandParser
+
+create VolunteerFindCommand
+VolunteerFindCommandParser -> VolunteerFindCommand
+activate VolunteerFindCommand
+
+VolunteerFindCommand --> VolunteerFindCommandParser : f
+deactivate VolunteerFindCommand
+
+VolunteerFindCommandParser --> IVolunteerParser : f
+deactivate VolunteerFindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+VolunteerFindCommandParser -[hidden]-> IVolunteerParser
+destroy VolunteerFindCommandParser
+
+IVolunteerParser --> LogicManager : f
+deactivate IVolunteerParser
+
+LogicManager -> VolunteerFindCommand : execute()
+activate VolunteerFindCommand
+
+VolunteerFindCommand -> Model : Display filtered volunteer list
+activate Model
+
+Model --> VolunteerFindCommand
+deactivate Model
+
+create CommandResult
+VolunteerFindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> VolunteerFindCommand
+deactivate CommandResult
+
+VolunteerFindCommand --> LogicManager : result
+deactivate VolunteerFindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
