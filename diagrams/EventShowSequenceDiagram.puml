@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":IVolunteerParser" as IVolunteerParser LOGIC_COLOR
+participant ":EventShowCommandParser" as EventShowCommandParser LOGIC_COLOR
+participant "es:EventShowCommand" as EventShowCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("eshow 1")
+activate LogicManager
+
+LogicManager -> IVolunteerParser : parseCommand("eshow 1")
+activate IVolunteerParser
+
+create EventShowCommandParser
+IVolunteerParser -> EventShowCommandParser
+activate EventShowCommandParser
+
+EventShowCommandParser --> IVolunteerParser
+deactivate EventShowCommandParser
+
+IVolunteerParser -> EventShowCommandParser : parse("1")
+activate EventShowCommandParser
+
+create EventShowCommand
+EventShowCommandParser -> EventShowCommand
+activate EventShowCommand
+
+EventShowCommand --> EventShowCommandParser : es
+deactivate EventShowCommand
+
+EventShowCommandParser --> IVolunteerParser : es
+deactivate EventShowCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EventShowCommandParser -[hidden]-> IVolunteerParser
+destroy EventShowCommandParser
+
+IVolunteerParser --> LogicManager : es
+deactivate IVolunteerParser
+
+LogicManager -> EventShowCommand : execute()
+activate EventShowCommand
+
+EventShowCommand -> Model : getFilteredEventList()
+activate Model
+
+Model --> EventShowCommand : lastShownList
+deactivate Model
+
+EventShowCommand -> Model : updateEventToShowList()
+activate Model
+Model --> EventShowCommand
+deactivate Model
+
+create CommandResult
+EventShowCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EventShowCommand
+deactivate CommandResult
+
+EventShowCommand --> LogicManager : result
+deactivate EventShowCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EventShowCommandParser -[hidden]-> LogicManager
+destroy EventShowCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
