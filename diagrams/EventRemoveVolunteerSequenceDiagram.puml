@@ -1,0 +1,102 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":IVolunteerParser" as IVolunteerParser LOGIC_COLOR
+participant ":EventAddVolunteerCommandParser" as EventAddVolunteerCommandParser LOGIC_COLOR
+participant "c:EventAddVolunteerCommand" as EventAddVolunteerCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Event EVENT_COLOR_T1
+participant ":Event" as Event EVENT_COLOR
+end box
+
+box Volunteer VOLUNTEER_COLOR_T1
+participant ":Volunteer" as Volunteer VOLUNTEER_COLOR
+end box
+
+[-> LogicManager : execute("eaddv eid/1 vid/1")
+activate LogicManager
+
+LogicManager -> IVolunteerParser : parseCommand("eaddv eid/1 vid/1")
+activate IVolunteerParser
+
+create EventAddVolunteerCommandParser
+IVolunteerParser -> EventAddVolunteerCommandParser
+activate EventAddVolunteerCommandParser
+
+EventAddVolunteerCommandParser --> IVolunteerParser
+deactivate EventAddVolunteerCommandParser
+
+IVolunteerParser -> EventAddVolunteerCommandParser : parse("eid/ vid/1")
+activate EventAddVolunteerCommandParser
+
+create EventAddVolunteerCommand
+EventAddVolunteerCommandParser -> EventAddVolunteerCommand
+activate EventAddVolunteerCommand
+
+EventAddVolunteerCommand --> EventAddVolunteerCommandParser : c
+deactivate EventAddVolunteerCommand
+
+EventAddVolunteerCommandParser --> IVolunteerParser : c
+deactivate EventAddVolunteerCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EventAddVolunteerCommandParser -[hidden]-> IVolunteerParser
+destroy EventAddVolunteerCommandParser
+
+IVolunteerParser --> LogicManager : c
+deactivate IVolunteerParser
+
+LogicManager -> EventAddVolunteerCommand : execute(model)
+activate EventAddVolunteerCommand
+
+EventAddVolunteerCommand -> Event : hasVolunteer(volunteerToAssign)
+activate Event
+
+Event --> EventAddVolunteerCommand
+deactivate Event
+
+EventAddVolunteerCommand -> Volunteer : removeEvent(eventToRemove)
+activate Volunteer
+
+Volunteer --> EventAddVolunteerCommand
+deactivate Volunteer
+
+EventAddVolunteerCommand -> Event : removeVolunteer(volunteerToRemove)
+activate Event
+
+Event --> EventAddVolunteerCommand
+deactivate Event
+
+EventAddVolunteerCommand -> Model : setVolunteer(oldVolunteer, newVolunteer)
+activate Model
+
+Model --> EventAddVolunteerCommand
+deactivate Model
+
+EventAddVolunteerCommand -> Model : setEvent(oldEvent, newEvent)
+activate Model
+
+Model --> EventAddVolunteerCommand
+deactivate Model
+
+create CommandResult
+EventAddVolunteerCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EventAddVolunteerCommand
+deactivate CommandResult
+
+EventAddVolunteerCommand --> LogicManager : result
+deactivate EventAddVolunteerCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

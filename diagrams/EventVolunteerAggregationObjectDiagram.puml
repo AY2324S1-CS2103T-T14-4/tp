@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam ClassBackgroundColor #FFFFAA
+
+class Volunteer as "<u>:Volunteer</u>"
+
+class Name as "<u>:Name</u>"
+
+class Phone as "<u>:Phone</u>"
+
+class Email as "<u>:Email</u>"
+
+class Event as "<u>:Event</u>"
+
+class EventName as "<u>:EventName</u>"
+
+class Role as "<u>:Role</u>"
+
+class StartDateTime as "<u>:DateTime</u>"
+
+class Location as "<u>:Location</u>"
+
+class Description as "<u>:Description</u>"
+
+class Material as "<u>:Material</u>"
+
+class Budget as "<u>:Budget</u>"
+
+class MaxVolunteerSize as "<u>:MaxVolunteerSize</u>"
+
+Event --> EventName
+Event --> Role
+Event --> StartDateTime
+Event --> Location
+Event --> Description
+Event --> Material
+Event --> Budget
+Event --> MaxVolunteerSize
+
+Volunteer -up-> Email
+Volunteer -up-> Phone
+Volunteer -up-> Name
+
+Event -up-> Volunteer
+@enduml

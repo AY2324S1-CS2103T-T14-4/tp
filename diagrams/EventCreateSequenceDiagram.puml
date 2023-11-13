@@ -46,16 +46,16 @@ destroy EventCreateCommandParser
 IVolunteerParser --> LogicManager : c
 deactivate IVolunteerParser
 
-LogicManager -> EventCreateCommand : execute()
+LogicManager -> EventCreateCommand : execute(model)
 activate EventCreateCommand
 
-EventCreateCommand -> Model : hasEvent(e)
+EventCreateCommand -> Model : hasEvent(newEvent)
 activate Model
 
 Model --> EventCreateCommand
 deactivate Model
 
-EventCreateCommand -> Model : addEvent(e)
+EventCreateCommand -> Model : addEvent(newEvent)
 activate Model
 
 Model --> EventCreateCommand
