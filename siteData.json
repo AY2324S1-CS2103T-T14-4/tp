@@ -98,7 +98,9 @@
         "change-definition-of-duplicate-volunteers": "Change definition of duplicate volunteers",
         "specific-error-message-for-duplicate-volunteers": "Specific error message for duplicate volunteers",
         "improve-event-roles-and-materials-duplicate-detection": "Improve Event roles and materials duplicate detection",
-        "improve-error-message-for-create-event-feature": "Improve error message for Create Event Feature"
+        "improve-error-message-for-create-event-feature": "Improve error message for Create Event Feature",
+        "improve-name-format-to-support-special-characters": "Improve name format to support special characters",
+        "change-eaddm-command-format-to-maintain-consistency": "Change eaddm command format to maintain consistency"
       },
       "headingKeywords": {}
     },
