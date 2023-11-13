@@ -72,7 +72,11 @@
         "code-reuse-from-ab3": "Code reuse from AB3",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
+        "creating-a-volunteer": "Creating a volunteer",
         "deleting-a-volunteer": "Deleting a volunteer",
+        "finding-a-volunteer": "Finding a volunteer",
+        "finding-an-event": "Finding an event",
+        "undoing-redoing-a-command": "Undoing/redoing a command",
         "saving-data": "Saving data"
       },
       "headingKeywords": {}
