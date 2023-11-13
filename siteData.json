@@ -92,6 +92,9 @@
         "undoing-redoing-a-command": "Undoing/redoing a command",
         "saving-data": "Saving data",
         "appendix-planned-enhancements": "Appendix: Planned Enhancements",
+        "change-definition-of-duplicate-volunteers": "Change definition of duplicate volunteers",
+        "specific-error-message-for-duplicate-volunteers": "Specific error message for duplicate volunteers",
+        "improve-event-roles-and-materials-duplicate-detection": "Improve Event roles and materials duplicate detection",
         "improve-error-message-for-create-event-feature": "Improve error message for Create Event Feature"
       },
       "headingKeywords": {}
