@@ -142,6 +142,8 @@
         "listing-all-volunteers-in-an-event-elistv": "Listing all volunteers in an event: elistv",
         "listing-all-events-joined-by-a-volunteer-vliste": "Listing all events joined by a volunteer: vliste",
         "removing-a-volunteer-from-an-event-eremovev": "Removing a volunteer from an event: eremovev",
+        "undo-a-command-undo": "Undo a Command: undo",
+        "redo-a-command-redo": "Redo a Command: redo",
         "exiting-the-program-exit": "Exiting the program : exit",
         "saving-the-data": "Saving the data",
         "editing-the-data-file": "Editing the data file",
