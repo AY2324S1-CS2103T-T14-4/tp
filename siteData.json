@@ -53,7 +53,7 @@
         "implementation": "Implementation",
         "create-event-feature": "Create Event Feature",
         "design-considerations": "Design Considerations",
-        "proposed-undo-redo-feature": "[Proposed] Undo/redo feature",
+        "undo-redo-feature": "Undo/redo feature",
         "proposed-reading-an-individual-event-feature": "[Proposed] Reading an individual event feature",
         "in-progress-delete-the-event-from-a-list-of-event": "[In progress] Delete the event from a list of event",
         "implementation-3": "Implementation",
