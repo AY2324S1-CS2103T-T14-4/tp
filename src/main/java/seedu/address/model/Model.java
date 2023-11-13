@@ -170,4 +170,20 @@ public interface Model {
     VersionedVolunteerStorage getVersionedVolunteerStorage();
     /** Returns an unmodifiable view of the versionedEventStorage */
     VersionedEventStorage getVersionedEventStorage();
+
+    // Functionality to change Role quantities after an edit is done to Volunteer or Event
+
+    /**
+     * Updates all Role quantities for every Event within the model using updateEventRoleQuantities.
+     */
+    void updateAllEventRoleQuantities();
+
+    /**
+     * Updates the event's role quantities based on the volunteers currently in the model's volunteer list, returning
+     * it as a new Event object.
+     * @param event The event to get the set of roles from.
+     * @return The event with current role quantities updated.
+     */
+    Event updateEventRoleQuantities(Event event);
+
 }

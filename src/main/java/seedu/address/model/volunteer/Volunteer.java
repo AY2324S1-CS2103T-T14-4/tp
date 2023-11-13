@@ -96,8 +96,7 @@ public class Volunteer {
         return new Volunteer(name, phone, email, skills, newEvents);
     }
     /**
-     * Returns true if both volunteers have the same name.
-     * This defines a weaker notion of equality between two volunteers.
+     * Returns true if both volunteers have the same phone number or the same email.
      */
     public boolean isSameVolunteer(Volunteer otherVolunteer) {
         if (otherVolunteer == this) {

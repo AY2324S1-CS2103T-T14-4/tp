@@ -83,8 +83,11 @@ public class VolunteerEditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
         }
 
+        // set volunteer first
         model.setVolunteer(volunteerToEdit, editedVolunteer);
         model.updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
+        // edit all role quantities to match the new edited volunteer
+        model.updateAllEventRoleQuantities();
         model.commitToBothVersionedStorages(model.getEventStorage(), model.getVolunteerStorage());
         return new CommandResult(String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, Messages.format(editedVolunteer)));
     }

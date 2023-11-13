@@ -1,0 +1,141 @@
+{
+  "events" : [ {
+    "eventName" : "fixing computers",
+    "roles" : [ {
+      "roleName" : "mechanic",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "1"
+    }, {
+      "roleName" : "engineer",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "4"
+    } ],
+    "startDate" : "10/1/2023 1600",
+    "endDate" : "14/1/2023 1500",
+    "location" : "home",
+    "description" : "fix computers",
+    "materials" : [ {
+      "material" : "computers",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "50"
+    } ],
+    "budget" : "120.00",
+    "assignedVolunteers" : [ ],
+    "maxVolunteerSize" : "9223372036854775807"
+  }, {
+    "eventName" : "picking litter",
+    "roles" : [ {
+      "roleName" : "litterer",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "4"
+    }, {
+      "roleName" : "picker",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "10"
+    } ],
+    "startDate" : "10/3/2023 1500",
+    "endDate" : "20/3/2023 1900",
+    "location" : "queenstown",
+    "description" : "picking litter at queenstown",
+    "materials" : [ {
+      "material" : "tongs",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "10"
+    } ],
+    "budget" : "40.00",
+    "assignedVolunteers" : [ "Ben" ],
+    "maxVolunteerSize" : "5"
+  }, {
+    "eventName" : "food donation",
+    "roles" : [ {
+      "roleName" : "donor",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "50"
+    }, {
+      "roleName" : "cook",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "50"
+    } ],
+    "startDate" : "13/4/2023 1500",
+    "endDate" : "15/4/2023 1900",
+    "location" : "sengkang",
+    "description" : "donating food",
+    "materials" : [ {
+      "material" : "vegetables",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "50"
+    } ],
+    "budget" : "500.00",
+    "assignedVolunteers" : [ ],
+    "maxVolunteerSize" : "9223372036854775807"
+  }, {
+    "eventName" : "baking cookies",
+    "roles" : [ {
+      "roleName" : "packer",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "20"
+    }, {
+      "roleName" : "baker",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "30"
+    } ],
+    "startDate" : "5/6/2023 1500",
+    "endDate" : "6/6/2023 1900",
+    "location" : "marina bay",
+    "description" : "baking cookies",
+    "materials" : [ {
+      "material" : "milk",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "200"
+    } ],
+    "budget" : "750.00",
+    "assignedVolunteers" : [ ],
+    "maxVolunteerSize" : "4"
+  }, {
+    "eventName" : "cooking food",
+    "roles" : [ {
+      "roleName" : "packer",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "6"
+    }, {
+      "roleName" : "chef",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "2"
+    } ],
+    "startDate" : "10/9/2023 1500",
+    "endDate" : "12/9/2023 1900",
+    "location" : "hougang",
+    "description" : "cooking food",
+    "materials" : [ {
+      "material" : "potatoes",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "50"
+    } ],
+    "budget" : "500.00",
+    "assignedVolunteers" : [ ],
+    "maxVolunteerSize" : "4"
+  }, {
+    "eventName" : "teaching kids",
+    "roles" : [ {
+      "roleName" : "teacher",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "8"
+    }, {
+      "roleName" : "planner",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "4"
+    } ],
+    "startDate" : "22/11/2023 1500",
+    "endDate" : "24/11/2023 1900",
+    "location" : "Choa Chu Kang",
+    "description" : "teach kids",
+    "materials" : [ {
+      "material" : "paper",
+      "currentQuantity" : "0",
+      "requiredQuantity" : "100"
+    } ],
+    "budget" : "500.00",
+    "assignedVolunteers" : [ ],
+    "maxVolunteerSize" : "8"
+  } ]
+}

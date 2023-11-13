@@ -74,7 +74,9 @@ public class VersionedEventStorage extends EventStorage {
     }
     private void trimVersionedEvents() {
         int size = versionedEvents.size();
-        for (int i = currentStatePointer; i <= size - 1; i++) {
+        for (int i = size - 1; i >= currentStatePointer; i--) {
+            // changed implementation to remove from largest index to smallest, if not will result in
+            // InvocationTargetException in certain cases
             versionedEvents.remove(i);
         }
     }

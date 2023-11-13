@@ -27,7 +27,6 @@ import seedu.address.logic.commands.eventvolunteercommands.EventAddVolunteerComm
 import seedu.address.logic.commands.eventvolunteercommands.EventListVolunteerCommand;
 import seedu.address.logic.commands.eventvolunteercommands.EventRemoveVolunteerCommand;
 import seedu.address.logic.commands.eventvolunteercommands.VolunteerListEventCommand;
-import seedu.address.logic.commands.volunteercommands.VolunteerClearCommand;
 import seedu.address.logic.commands.volunteercommands.VolunteerCreateCommand;
 import seedu.address.logic.commands.volunteercommands.VolunteerDeleteCommand;
 import seedu.address.logic.commands.volunteercommands.VolunteerEditCommand;
@@ -64,13 +63,6 @@ public class IVolunteerParserTest {
         VolunteerCreateCommand command = (VolunteerCreateCommand) parser.parseCommand(VolunteerUtil
                                             .getAddCommand(volunteer));
         assertEquals(new VolunteerCreateCommand(volunteer), command);
-    }
-
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(VolunteerClearCommand.COMMAND_WORD) instanceof VolunteerClearCommand);
-        assertTrue(parser.parseCommand(VolunteerClearCommand.COMMAND_WORD + " 3")
-                    instanceof VolunteerClearCommand);
     }
 
     @Test

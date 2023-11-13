@@ -1,0 +1,57 @@
+{
+  "volunteers" : [ {
+    "name" : "Alexis Yeoh",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "skills" : [ "packer", "teacher" ],
+    "assignedEvents" : [ ]
+  }, {
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "skills" : [ "smart", "intelligent" ],
+    "assignedEvents" : [ ]
+  }, {
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "skills" : [ "mechanic" ],
+    "assignedEvents" : [ ]
+  }, {
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "skills" : [ "cook" ],
+    "assignedEvents" : [ ]
+  }, {
+    "name" : "Irfan Ibrahim",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "skills" : [ "muscular", "strong" ],
+    "assignedEvents" : [ ]
+  }, {
+    "name" : "Roy Balakrishnan",
+    "phone" : "93624417",
+    "email" : "royb@example.com",
+    "skills" : [ "donor", "engineer" ],
+    "assignedEvents" : [ ]
+  }, {
+    "name" : "George",
+    "phone" : "95465432",
+    "email" : "george@example.com",
+    "skills" : [ "chef" ],
+    "assignedEvents" : [ ]
+  }, {
+    "name" : "Ben",
+    "phone" : "98765432",
+    "email" : "ben@example.com",
+    "skills" : [ "chef" ],
+    "assignedEvents" : [ "picking litter" ]
+  }, {
+    "name" : "David Tan",
+    "phone" : "90955643",
+    "email" : "davidtan@example.com",
+    "skills" : [ "litterer", "planner" ],
+    "assignedEvents" : [ ]
+  } ]
+}

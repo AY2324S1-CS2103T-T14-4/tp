@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class RoleTest {
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Role(null));
@@ -23,6 +22,12 @@ public class RoleTest {
 
     @Test
     public void isValidRoleName() {
+        // valid role
+        assertTrue(Role.isValidRoleName("chef"));
+
+        // empty string
+        assertFalse(Role.isValidRoleName(""));
+
         // null name
         assertThrows(NullPointerException.class, () -> Role.isValidRoleName(null));
 

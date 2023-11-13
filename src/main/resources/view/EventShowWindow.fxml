@@ -4,12 +4,16 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.image.Image?>
 <?import javafx.stage.Stage?>
-
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.ScrollPane?>
 <fx:root resizable="false" title="Showing event..." type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/help_icon.png" />
+    <Image url="@/images/iVolunteer.png" />
   </icons>
   <scene>
     <Scene>
@@ -17,9 +21,33 @@
         <URL value="@EventShowWindow.css" />
       </stylesheets>
 
-      <VBox minHeight="240" minWidth="500" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-        <ListView minHeight="240" fx:id="eventShowView" VBox.vgrow="ALWAYS" focusTraversable="false"/>
-      </VBox>
+      <ScrollPane fx:id="eventShowView" prefWidth="500" maxHeight="600" fitToWidth="true" vbarPolicy="ALWAYS" hbarPolicy="NEVER">
+        <VBox fx:id="eventToShow" alignment="CENTER_LEFT" GridPane.columnIndex="0">
+          <padding>
+            <Insets bottom="5" left="15" right="5" top="5" />
+          </padding>
+
+          <Label fx:id="eventName" styleClass="cell_big_label" text="\$eventName" wrapText="true" />
+          <Separator />
+          <Label fx:id="startDate" styleClass="cell_small_label" text="\$startDate" />
+          <Label fx:id="endDate" styleClass="cell_small_label" text="\$endDate" />
+          <Separator />
+          <Label fx:id="loc" styleClass="cell_small_label" text="\$loc" wrapText="true" />
+          <Separator />
+          <Label text="Roles needed: " />
+          <VBox fx:id="roles" />
+          <Separator />
+          <Label fx:id="budget" styleClass="cell_small_label" text="\$budget" />
+          <Separator />
+          <Label text="Materials needed: " />
+          <VBox fx:id="materials" />
+          <Separator />
+          <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true" />
+          <Separator />
+          <Label fx:id="maxVolunteerSize" styleClass="cell_small_label" text="\$maxVolunteerSize" wrapText="true" />
+        </VBox>
+      </ScrollPane>
+
     </Scene>
   </scene>
 </fx:root>

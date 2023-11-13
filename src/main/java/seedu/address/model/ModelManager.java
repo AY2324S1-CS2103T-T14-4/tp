@@ -4,9 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -14,6 +17,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.Role;
+import seedu.address.model.skill.Skill;
+import seedu.address.model.volunteer.Name;
 import seedu.address.model.volunteer.Volunteer;
 
 /**
@@ -262,6 +268,53 @@ public class ModelManager implements Model {
     public void updateEventToShowList(Predicate<Event> eventPredicate) {
         requireNonNull(eventPredicate);
         eventToShowList.setPredicate(eventPredicate);
+    }
+
+    @Override
+    public void updateAllEventRoleQuantities() {
+        // eventList is the list of all events
+        List<Event> eventList = getEventStorage().getEventList();
+        for (Event event : eventList) {
+            Event newEvent = updateEventRoleQuantities(event);
+            setEvent(event, newEvent);
+        }
+    }
+
+    @Override
+    public Event updateEventRoleQuantities(Event event) {
+        Set<Role> roles = event.getRoles();
+        // mutable version of roles to be updated
+        Set<Role> updatedRoles = new HashSet<>();
+        Set<Name> volunteerNames = event.getVolunteerNames();
+        // filteredVolunteerList is the list of volunteers in event
+        List<Volunteer> filteredVolunteerList = getVolunteerStorage()
+                .getVolunteerList()
+                .stream()
+                .filter(volunteer -> volunteerNames.contains(volunteer.getName()))
+                .collect(Collectors.toList());
+        for (Role role : roles) {
+            // initialise as role with 0 current manpower before counting
+            Role updatedRole = new Role(role.roleName, 0, role.requiredQuantity);
+            for (Volunteer volunteer : filteredVolunteerList) {
+                for (Skill skill : volunteer.getSkills()) {
+                    if (role.roleName.equals(skill.skillName)) {
+                        updatedRole = updatedRole.addRoleManpower();
+                    }
+                }
+            }
+            updatedRoles.add(updatedRole);
+        }
+        return new Event(
+                event.getEventName(),
+                updatedRoles,
+                event.getStartDate(),
+                event.getEndDate(),
+                event.getLocation(),
+                event.getDescription(),
+                event.getMaterials(),
+                event.getBudget(),
+                event.getAssignedVolunteers(),
+                event.getMaxVolunteerSize());
     }
 
     //=========== Filtered Volunteer Storage Accessors =============================================================

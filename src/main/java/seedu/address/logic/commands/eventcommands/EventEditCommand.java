@@ -16,7 +16,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -36,9 +35,7 @@ import seedu.address.model.event.Location;
 import seedu.address.model.event.Material;
 import seedu.address.model.event.MaxVolunteerSize;
 import seedu.address.model.event.Role;
-import seedu.address.model.skill.Skill;
 import seedu.address.model.volunteer.Name;
-import seedu.address.model.volunteer.Volunteer;
 
 
 /**
@@ -95,8 +92,7 @@ public class EventEditCommand extends Command {
         }
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
-        Event editedEvent = updateEventRoleQuantities(createEditedEvent(eventToEdit, editEventDescriptor),
-                model);
+        Event editedEvent = model.updateEventRoleQuantities(createEditedEvent(eventToEdit, editEventDescriptor));
 
         if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
@@ -140,48 +136,6 @@ public class EventEditCommand extends Command {
         logger.info("Edited event created successfully");
         return new Event(updatedEventName, updatedRoles, updatedStartTime, updatedEndTime, updatedLocation,
                 updatedDescription, updatedMaterial, updatedBudget, assignedVolunteers, updatedMaxVolunteerSize);
-    }
-
-    /**
-     * Updates the event's role quantities based on the volunteers currently in the model's volunteer list.
-     * @param event The event to get the set of roles from.
-     * @param model The model to get the volunteers in the volunteer list.
-     * @return The event with current role quantities updated.
-     */
-    private static Event updateEventRoleQuantities(Event event, Model model) {
-        Set<Role> roles = event.getRoles();
-        // mutable version of roles to be updated
-        Set<Role> updatedRoles = new HashSet<>();
-        Set<Name> volunteerNames = event.getVolunteerNames();
-        // filteredVolunteerList is the list of volunteers in event
-        List<Volunteer> filteredVolunteerList = model
-                .getVolunteerStorage()
-                .getVolunteerList()
-                .stream()
-                .filter(volunteer -> volunteerNames.contains(volunteer.getName()))
-                .collect(Collectors.toList());
-        for (Role role : roles) {
-            Role updatedRole = role;
-            for (Volunteer volunteer : filteredVolunteerList) {
-                for (Skill skill : volunteer.getSkills()) {
-                    if (role.roleName.equals(skill.skillName)) {
-                        updatedRole = updatedRole.addRoleManpower();
-                    }
-                }
-            }
-            updatedRoles.add(updatedRole);
-        }
-        return new Event(
-                event.getEventName(),
-                updatedRoles,
-                event.getStartDate(),
-                event.getEndDate(),
-                event.getLocation(),
-                event.getDescription(),
-                event.getMaterials(),
-                event.getBudget(),
-                event.getAssignedVolunteers(),
-                event.getMaxVolunteerSize());
     }
 
     @Override

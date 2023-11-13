@@ -31,17 +31,17 @@ public class TypicalVolunteers {
             .withEmail("heinz@example.com").build();
     public static final Volunteer DANIEL = new VolunteerBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withSkills("friends").build();
-    public static final Volunteer ELLE = new VolunteerBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Volunteer ELLE = new VolunteerBuilder().withName("Elle Meyer").withPhone("94822242")
             .withEmail("werner@example.com").build();
-    public static final Volunteer FIONA = new VolunteerBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Volunteer FIONA = new VolunteerBuilder().withName("Fiona Kunz").withPhone("94824273")
             .withEmail("lydia@example.com").build();
-    public static final Volunteer GEORGE = new VolunteerBuilder().withName("George Best").withPhone("9482442")
+    public static final Volunteer GEORGE = new VolunteerBuilder().withName("George Best").withPhone("94824425")
             .withEmail("anna@example.com").build();
 
     // Manually added
-    public static final Volunteer HOON = new VolunteerBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Volunteer HOON = new VolunteerBuilder().withName("Hoon Meier").withPhone("84824241")
             .withEmail("stefan@example.com").build();
-    public static final Volunteer IDA = new VolunteerBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Volunteer IDA = new VolunteerBuilder().withName("Ida Mueller").withPhone("84821319")
             .withEmail("hans@example.com").build();
 
     // Manually added - Volunteer's details found in {@code CommandTestUtil}

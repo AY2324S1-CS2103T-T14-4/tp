@@ -36,7 +36,7 @@ public class VolunteerFindCommandParser implements Parser<VolunteerFindCommand> 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SKILL);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SKILL)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SKILL) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, VolunteerFindCommand.MESSAGE_USAGE));
         }

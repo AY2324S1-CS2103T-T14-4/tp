@@ -1,13 +1,15 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
@@ -18,19 +20,43 @@ import seedu.address.model.event.Event;
 public class EventShowWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(EventShowWindow.class);
     private static final String FXML = "EventShowWindow.fxml";
+    private final ObservableList<Event> eventToShowList;
+
     @FXML
-    private ListView<Event> eventShowView;
+    private ScrollPane eventShowView;
+    @FXML
+    private VBox eventToShow;
+    @FXML
+    private Label eventName;
+    @FXML
+    private Label id;
+    @FXML
+    private Label startDate;
+    @FXML
+    private Label endDate;
+    @FXML
+    private Label loc;
+    @FXML
+    private Label description;
+    @FXML
+    private Label maxVolunteerSize;
+    @FXML
+    private VBox materials;
+
+    @FXML
+    private Label budget;
+
+    @FXML
+    private VBox roles;
 
     /**
      * Creates an EventShowWindow object.
      * @param root Stage to use as the root of the EventShowWindow.
-     * @param eventToShow List containing the event to show.
+     * @param eventToShowList List containing the event to show.
      */
-    public EventShowWindow(Stage root, ObservableList<Event> eventToShow) {
+    public EventShowWindow(Stage root, ObservableList<Event> eventToShowList) {
         super(FXML, root);
-        eventShowView.setSelectionModel(new EventWindowSelectionModel<>());
-        eventShowView.setItems(eventToShow);
-        eventShowView.setCellFactory(listView -> new EventWindowViewCell());
+        this.eventToShowList = eventToShowList;
     }
 
     public EventShowWindow(ObservableList<Event> eventToShow) {
@@ -71,6 +97,29 @@ public class EventShowWindow extends UiPart<Stage> {
         getRoot().centerOnScreen();
     }
 
+    void loadContents() {
+        // Clear roles and materials from previous eshow commmand call
+        roles.getChildren().clear();
+        materials.getChildren().clear();
+
+        Event eventToShow = eventToShowList.get(0);
+        eventName.setText("Name of event: " + eventToShow.getEventName().eventName);
+        startDate.setText("Start date: " + eventToShow.getStartDate().toString());
+        endDate.setText("End date: " + eventToShow.getEndDate().toString());
+        loc.setText("Location: " + eventToShow.getLocation().location);
+        eventToShow.getRoles().stream()
+                .sorted(Comparator.comparing(role -> role.roleName))
+                .forEach(role -> roles.getChildren().add(new Label("\u2022 " + role.toUiString())));
+        budget.setText("Budget: " + eventToShow.getBudget().budget);
+        eventToShow.getMaterials().stream()
+                .sorted(Comparator.comparing(material -> material.material))
+                .forEach(material -> materials.getChildren().add(new Label("\u2022 " + material.toUiString())));
+        description.setText("Description: " + eventToShow.getDescription().description);
+        maxVolunteerSize.setText("Maximum number of volunteers in event: "
+                + eventToShow.getMaxVolunteerSize().toUiString()
+        );
+    }
+
     /**
      * Returns true if the event window is currently being shown.
      */
@@ -90,22 +139,5 @@ public class EventShowWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
-    }
-
-    /**
-     * Custom {@code ListCell} that displays the graphics of an {@code Event} using a {@code EventWindowCard}.
-     */
-    class EventWindowViewCell extends ListCell<Event> {
-        @Override
-        protected void updateItem(Event event, boolean empty) {
-            super.updateItem(event, empty);
-
-            if (empty || event == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new EventWindowCard(event, getIndex() + 1).getRoot());
-            }
-        }
     }
 }

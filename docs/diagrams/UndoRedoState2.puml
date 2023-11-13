@@ -4,12 +4,12 @@ skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 skinparam ClassBackgroundColor #FFFFAA
 
-title After command "add n/David"
+title After command "vcreate n/David"
 
 package States <<rectangle>> {
-    class State1 as "<u>ab0:AddressBook</u>"
-    class State2 as "<u>ab1:AddressBook</u>"
-    class State3 as "<u>ab2:AddressBook</u>"
+    class State1 as "<u>v0:VolunteerStorage</u>"
+    class State2 as "<u>v1:VolunteerStorage</u>"
+    class State3 as "<u>v2:VolunteerStorage</u>"
 }
 
 State1 -[hidden]right-> State2

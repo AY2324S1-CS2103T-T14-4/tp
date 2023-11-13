@@ -253,6 +253,16 @@ public class EventCreateCommandTest {
         public VersionedVolunteerStorage getVersionedVolunteerStorage() {
             throw new AssertionError("This method should not be called");
         }
+
+        @Override
+        public Event updateEventRoleQuantities(Event event) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void updateAllEventRoleQuantities() {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**

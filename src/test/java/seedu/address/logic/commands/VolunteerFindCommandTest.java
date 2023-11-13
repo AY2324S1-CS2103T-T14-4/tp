@@ -106,7 +106,7 @@ public class VolunteerFindCommandTest {
     @Test
     public void preparePredicateTest() throws ParseException {
         SkillNameContainsKeywordsPredicate predicate = preparePredicate(" n/Alice n/Bob");
-        assertEquals("seedu.address.model.volunteer.SkillNameContainsKeywordsPredicate"
+        assertEquals(SkillNameContainsKeywordsPredicate.class.getCanonicalName()
                 + "{names=[Alice, Bob], skills=[]}", predicate.toString());
     }
 

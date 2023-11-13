@@ -5,20 +5,27 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model as ModelPackage <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyVolunteerStorage" as ReadOnlyVolunteerStorage
+Class "<<interface>>\nReadOnlyEventStorage" as ReadOnlyEventStorage
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class VolunteerStorage
+Class EventStorage
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
+Class UniqueVolunteerList
+Class Volunteer
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Skill
+Class EventName
+
+Class UniqueEventList
+Class Event
+
+note right of Event: The fields of Event are\n in the class diagram below.
 
 Class I #FFFFFF
 }
@@ -26,29 +33,43 @@ Class I #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+VolunteerStorage .up.|> ReadOnlyVolunteerStorage
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyVolunteerStorage
+ModelManager -left-> "1" VolunteerStorage
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+VolunteerStorage *--> "1" UniqueVolunteerList
+UniqueVolunteerList --> "~* all" Volunteer
+Volunteer *--> Name
+Volunteer *--> Phone
+Volunteer *--> Email
+Volunteer *--> "*" Skill
+Volunteer *--> "*" EventName : is assigned to\n event with name >
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+Volunteer -[hidden]up--> I
+UniqueVolunteerList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Email
+Email -[hidden]right-> Skill
+Skill -[hidden]right-> EventName
 
-ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Volunteer
+
+EventStorage .up.|> ReadOnlyEventStorage
+
+Model .right.> ReadOnlyEventStorage
+ModelManager -right-> "1" EventStorage
+
+EventStorage *--> "1" UniqueEventList
+UniqueEventList --> "~* all" Event
+
+Event -[hidden]up--> I
+UniqueEventList -[hidden]right-> I
+
+ModelManager --> "~* filtered" Event
 @enduml

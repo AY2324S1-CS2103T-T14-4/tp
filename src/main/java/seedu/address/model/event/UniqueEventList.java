@@ -31,7 +31,7 @@ public class UniqueEventList implements Iterable<Event> {
     /**
      * Returns the event in the event storage with the {@code eventName}.
      */
-    public Event get(EventName eventName) {
+    public Event getEvent(EventName eventName) {
         requireNonNull(eventName);
         return internalList.stream().filter(e -> e.getEventName().equals(eventName)).findFirst().get();
     }
