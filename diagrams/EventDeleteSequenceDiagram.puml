@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":iVolunteerParser" as iVolunteerParser LOGIC_COLOR
+participant ":EventDeleteCommandParser" as EventDeleteCommandParser LOGIC_COLOR
+participant "d:EventDeleteCommand" as EventDeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edelete 1")
+activate LogicManager
+
+LogicManager -> iVolunteerParser : parseCommand("edelete 1")
+activate iVolunteerParser
+
+create EventDeleteCommandParser
+iVolunteerParser -> EventDeleteCommandParser
+activate EventDeleteCommandParser
+
+EventDeleteCommandParser --> iVolunteerParser
+deactivate EventDeleteCommandParser
+
+iVolunteerParser -> EventDeleteCommandParser : parse("1")
+activate EventDeleteCommandParser
+
+create EventDeleteCommand
+EventDeleteCommandParser -> EventDeleteCommand
+activate EventDeleteCommand
+
+EventDeleteCommand --> EventDeleteCommandParser : d
+deactivate EventDeleteCommand
+
+EventDeleteCommandParser --> iVolunteerParser : d
+deactivate EventDeleteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EventDeleteCommandParser -[hidden]-> iVolunteerParser
+destroy EventDeleteCommandParser
+
+iVolunteerParser --> LogicManager : d
+deactivate iVolunteerParser
+
+LogicManager -> EventDeleteCommand : execute(model)
+activate EventDeleteCommand
+
+EventDeleteCommand -> Model : deleteEvent(e)
+activate Model
+
+Model --> EventDeleteCommand
+deactivate Model
+
+create CommandResult
+EventDeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EventDeleteCommand
+deactivate CommandResult
+
+EventDeleteCommand --> LogicManager : result
+deactivate EventDeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

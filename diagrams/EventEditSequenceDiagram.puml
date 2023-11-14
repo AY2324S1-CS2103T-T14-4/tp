@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":iVolunteerParser" as iVolunteerParser LOGIC_COLOR
+participant ":EventEditCommandParser" as EventEditCommandParser LOGIC_COLOR
+participant "e:EditEventDescriptor" as EditEventDescriptor LOGIC_COLOR
+participant "d:EventEditCommand" as EventEditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("eedit 1 sd/1/1/2023 1100 ...")
+activate LogicManager
+
+LogicManager -> iVolunteerParser : parseCommand("eedit 1 sd/1/1/2023 1100 ...")
+activate iVolunteerParser
+
+create EventEditCommandParser
+iVolunteerParser -> EventEditCommandParser
+activate EventEditCommandParser
+
+EventEditCommandParser --> iVolunteerParser
+deactivate EventEditCommandParser
+
+iVolunteerParser -> EventEditCommandParser : parse("sd/1/1/2023 1100 ...")
+activate EventEditCommandParser
+
+create EditEventDescriptor
+EventEditCommandParser -> EditEventDescriptor
+activate EditEventDescriptor
+
+EditEventDescriptor --> EventEditCommandParser : e
+deactivate EditEventDescriptor
+
+EventEditCommandParser -> EditEventDescriptor : setStartDate(1/1/2023 1100)
+activate EditEventDescriptor
+
+EditEventDescriptor --> EventEditCommandParser
+deactivate EditEventDescriptor
+
+create EventEditCommand
+EventEditCommandParser -> EventEditCommand : EventEditCommand(1, e)
+activate EventEditCommand
+
+EventEditCommand --> EventEditCommandParser : d
+deactivate EventEditCommand
+
+EventEditCommandParser --> iVolunteerParser : d
+deactivate EventEditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EventEditCommandParser -[hidden]-> iVolunteerParser
+destroy EventEditCommandParser
+
+iVolunteerParser --> LogicManager : d
+deactivate iVolunteerParser
+
+LogicManager -> EventEditCommand : execute(model)
+activate EventEditCommand
+
+EventEditCommand -> Model : setEvent(old e, new e)
+activate Model
+
+Model --> EventEditCommand
+deactivate Model
+
+create CommandResult
+EventEditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EventEditCommand
+deactivate CommandResult
+
+EventEditCommand --> LogicManager : result
+deactivate EventEditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
