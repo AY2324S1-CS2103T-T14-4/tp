@@ -97,7 +97,8 @@
         "improve-event-roles-and-materials-duplicate-detection": "Improve Event roles and materials duplicate detection",
         "improve-error-message-for-create-event-feature": "Improve error message for Create Event Feature",
         "improve-name-format-to-support-special-characters": "Improve name format to support special characters",
-        "change-eaddm-command-format-to-maintain-consistency": "Change eaddm command format to maintain consistency"
+        "change-eaddm-command-format-to-maintain-consistency": "Change eaddm command format to maintain consistency",
+        "improve-list-panel-display-for-event-remove-volunteer-feature": "Improve list panel display for Event Remove Volunteer Feature"
       },
       "headingKeywords": {}
     },
