@@ -157,7 +157,8 @@
         "exit-command": "Exit command",
         "handling-data-manually": "Handling data manually",
         "faq": "FAQ",
-        "known-issues": "Known issues"
+        "known-issues": "Known issues",
+        "command-summary": "Command summary"
       },
       "headingKeywords": {}
     },
